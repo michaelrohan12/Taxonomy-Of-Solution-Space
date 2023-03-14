@@ -1,24 +1,28 @@
 import openai
 import time
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Set up OpenAI API credentials
-openai.api_key = "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"
+openai.api_key = os.getenv('API_KEY')
 
 # Define a function to get a response from ChatGPT
 def get_response(prompt):
-    response = openai.Completion.create(
-        engine="davinci",
-        prompt=prompt,
-        max_tokens=1024,
-        n=1,
-        stop=None,
-        temperature=0.5,
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role" : "user", "content" : prompt}
+        ],
+        max_tokens=4082,
+        temperature=0,
     )
 
-    return response.choices[0].text.strip()
+    return response.choices[0].message.content.strip()
 
 # Define the prompts to use for generating responses
-prompts = ["Hello, how are you today?", "What is your favorite color?", "Can you tell me a joke?"]
+prompts = ["Hello, how are you today?"]
 
 # Get responses for each prompt and store them in a text file
 with open("responses.txt", "w") as f:

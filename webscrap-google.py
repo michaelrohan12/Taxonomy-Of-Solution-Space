@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # Set the search query
-query = "national scholorschip portal"
+query = "gravity"
 
 # Send a request to Google and get the HTML response
 url = f"https://www.google.com/search?q={query}"
