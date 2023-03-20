@@ -9,17 +9,20 @@ load_dotenv()
 openai.api_key = os.getenv('API_KEY')
 
 # Define a function to get a response from ChatGPT
+
+
 def get_response(prompt):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role" : "user", "content" : prompt}
+            {"role": "user", "content": prompt}
         ],
         max_tokens=4082,
         temperature=0,
     )
 
     return response.choices[0].message.content.strip()
+
 
 # Define the prompts to use for generating responses
 prompts = ["Hello, how are you today?"]

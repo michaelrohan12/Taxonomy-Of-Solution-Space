@@ -2,11 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 
 # Set the search query
-query = "python programming"
+query = "gravity"
 
 # Send a request to Bing and get the HTML response
 url = f"https://www.bing.com/search?q={query}"
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
 response = requests.get(url, headers=headers)
 
 # Parse the HTML response using Beautiful Soup
@@ -38,4 +39,4 @@ for i, link in enumerate(search_results):
     # Write the paragraphs to a file
     with open(f"bing-results/result{i+1}.txt", "w", encoding='utf-8') as f:
         for p in paragraphs:
-            f.write(p + '\n\n')
+            f.write(p + '\n')
